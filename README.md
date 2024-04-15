@@ -2,11 +2,10 @@
 
 The GenAI Model Evaluator is a tool designed for you to analyze and compare the performance of various Bedrock FM models, particularly focusing on aspects like cost efficiency, speed, and summarization accuracy of text from uploaded PDF documents. By automating the evaluation process and providing detailed scoring across multiple criteria, it enables you to make informed decisions when selecting the most optimal models for specific tasks. With its streamlite interface, you can easily upload your PDFs, run evaluations on different models, and visualize comparative performance metrics to identify the best model for your needs.
 
+##### Authors: Brian Maguire, Dom Bavaro, Ryan Doty
 
 ## Demo
-
-
-
+![Alt text](images/demo.gif)
 
 
 ## Features
