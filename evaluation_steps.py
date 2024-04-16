@@ -1117,6 +1117,7 @@ def evaluate_model_performance(csv_string, model_id="anthropic.claude-3-sonnet-2
             }
         ]
     }
+    boto3.setup_default_session(profile_name=os.getenv("profile_name"))
     # Creating a boto3 client for interacting with the Bedrock Runtime service
     client = boto3.client(
         service_name='bedrock-runtime',

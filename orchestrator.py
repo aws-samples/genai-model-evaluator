@@ -72,8 +72,8 @@ def final_evaluator(pdf_path, models, task_prompt="Summarize this document in 2 
             time_length = round(end - start, 2)
             # calculate time taken per character
             char_process_time = character_count / time_length
-            # calculate costs for the model and the specific inference, specifically the input costs, output cost, total costs
-            # and total costs per 1000 invocations
+            # calculate costs for the model and the specific inference, specifically the input costs, output cost,
+            # total costs and total costs per 1000 invocations
             input_cost, output_cost, total_cost, total_cost_1000 = calculate_total_price(input_token_count,
                                                                                          output_token_count, model)
             # evaluate the models performance against the grading rubric and return the final score, final summary
@@ -105,8 +105,8 @@ def final_evaluator(pdf_path, models, task_prompt="Summarize this document in 2 
             time_length = round(end - start, 2)
             # calculate time taken per character
             char_process_time = character_count / time_length
-            # calculate costs for the model and the specific inference, specifically the input costs, output cost, total costs
-            # and total costs per 1000 invocations
+            # calculate costs for the model and the specific inference, specifically the input costs, output cost,
+            # total costs and total costs per 1000 invocations
             input_cost, output_cost, total_cost, total_cost_1000 = calculate_total_price(input_token_count,
                                                                                          output_token_count, model)
             # evaluate the models performance against the grading rubric and return the final score, final summary
@@ -138,8 +138,8 @@ def final_evaluator(pdf_path, models, task_prompt="Summarize this document in 2 
             time_length = round(end - start, 2)
             # calculate time taken per character
             char_process_time = character_count / time_length
-            # calculate costs for the model and the specific inference, specifically the input costs, output cost, total costs
-            # and total costs per 1000 invocations
+            # calculate costs for the model and the specific inference, specifically the input costs, output cost,
+            # total costs and total costs per 1000 invocations
             input_cost, output_cost, total_cost, total_cost_1000 = calculate_total_price(input_token_count,
                                                                                          output_token_count, model)
             # evaluate the models performance against the grading rubric and return the final score, final summary
@@ -171,8 +171,8 @@ def final_evaluator(pdf_path, models, task_prompt="Summarize this document in 2 
             time_length = round(end - start, 2)
             # calculate time taken per character
             char_process_time = character_count / time_length
-            # calculate costs for the model and the specific inference, specifically the input costs, output cost, total costs
-            # and total costs per 1000 invocations
+            # calculate costs for the model and the specific inference, specifically the input costs, output cost,
+            # total costs and total costs per 1000 invocations
             input_cost, output_cost, total_cost, total_cost_1000 = calculate_total_price(input_token_count,
                                                                                          output_token_count, model)
             # evaluate the models performance against the grading rubric and return the final score, final summary
@@ -204,8 +204,8 @@ def final_evaluator(pdf_path, models, task_prompt="Summarize this document in 2 
             time_length = round(end - start, 2)
             # calculate time taken per character
             char_process_time = character_count / time_length
-            # calculate costs for the model and the specific inference, specifically the input costs, output cost, total costs
-            # and total costs per 1000 invocations
+            # calculate costs for the model and the specific inference, specifically the input costs, output cost,
+            # total costs and total costs per 1000 invocations
             input_cost, output_cost, total_cost, total_cost_1000 = calculate_total_price(input_token_count,
                                                                                          output_token_count, model)
             # evaluate the models performance against the grading rubric and return the final score, final summary
@@ -237,8 +237,8 @@ def final_evaluator(pdf_path, models, task_prompt="Summarize this document in 2 
             time_length = round(end - start, 2)
             # calculate time taken per character
             char_process_time = character_count / time_length
-            # calculate costs for the model and the specific inference, specifically the input costs, output cost, total costs
-            # and total costs per 1000 invocations
+            # calculate costs for the model and the specific inference, specifically the input costs, output cost,
+            # total costs and total costs per 1000 invocations
             input_cost, output_cost, total_cost, total_cost_1000 = calculate_total_price(input_token_count,
                                                                                          output_token_count, model)
             # evaluate the models performance against the grading rubric and return the final score, final summary
@@ -257,7 +257,7 @@ def final_evaluator(pdf_path, models, task_prompt="Summarize this document in 2 
             evaluation_results += result.evaluation_results()
             # add the scoring rubric for the model into the scoring rubric list
             score_rubric_list.append(final_score_rubric)
-
+    # Setting the display to max column width
     pd.set_option('display.max_colwidth', None)
     # Convert scoring rubric list into a DataFrame
     score_rubric_df = pd.DataFrame(score_rubric_list)

@@ -16,11 +16,6 @@ The GenAI Model Evaluator is a tool designed for you to analyze and compare the 
 - **Visualization Tools for Model Comparison:** Provides visual aids to facilitate an easier understanding of how different models stack up against each other in performance metrics.
 - **Automated Model Evaluation:** Streamlines the evaluation process through AI-driven analysis of model performance data.
 
-
-TODO: 
-
- - Implement additional evaluation tasks, including a variety of summary tasks, such as classification, text generation/editing, among others.
- - 
 ## Benefits
 
 - **Efficiency:** Saves time and effort by automating analysis tasks.
@@ -43,7 +38,6 @@ To begin using the GenAI Model Evaluator:
 ### Configuration
 
 Configure necessary environment variables (e.g., AWS credentials, database connections) as detailed in sample directories.
-
 
 # How to use this Repo:
 
@@ -89,7 +83,7 @@ After your virtual environment has been created and activated, you can install a
 pip install -r requirements.txt
 
 ```
-## Step 3: Optional
+## Step 3:
 
 Create a .env file in the root of this repo. Within the .env file you just created you will need to configure the .env to contain:
 
@@ -101,6 +95,8 @@ save_folder=<PATH_TO_ROOT_OF_THIS_REPO>
 
 ```
 
+
+## Step 4:
 ### Running the Application
 
 Run the Streamlit application using the command provided in each sample's directory for an interactive evaluation experience.
@@ -109,7 +105,6 @@ Run the Streamlit application using the command provided in each sample's direct
 streamlit run app.py
 
 ```
-
 
 ## How the Evaluation Works
 

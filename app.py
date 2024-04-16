@@ -1,5 +1,4 @@
 import streamlit as st
-from streamlit_extras.metric_cards import style_metric_cards
 from pathlib import Path
 from orchestrator import final_evaluator
 import os
@@ -32,8 +31,6 @@ st.title(f""":rainbow[GenAI Model Evaluator]""")
 with st.container():
     # Directions on how to use the application that is shown on the web UI
     st.markdown('Upload a PDF to summarize, select the models you want to compare, and click generate')
-    
-    
     # the file upload field, the specific ui element that allows you to upload the file
     file = st.file_uploader('Upload a file', type=["pdf"], key="new")
     # the model selection box, the specific ui element that allows you to select multiple models
@@ -54,17 +51,13 @@ with st.container():
          'ai21.j2-mid-v1',
          'ai21.j2-ultra-v1'
          ])
-
+    # Setting placeholder text in the text box
     txt = st.text_area(
         "Document Summary Task",
         "Summarize this document in 2 sentences. ",
         )
-    
-    
-
-    # a button used to trigger the start of a model evaluation job - One button for each job type
+    # A button used to trigger the start of a model evaluation job - One button for each job type
     short_form_summary = st.button("Evaluate Models")
-
     # if the button is clicked for Short form summarization...start the processing
     if short_form_summary:
 
@@ -94,10 +87,9 @@ with st.container():
                 # dataframe, the evaluation results, and the cost evaluation results
                 st.success(f'Running Evaluations for  {len(model_options)} models.')
                 results_df, evaluation_results, costs_eval_results, score_rubric_df = final_evaluator(save_path,
-                                                                                                      model_options, txt,max_tokens)
+                                                                                                      model_options, txt, max_tokens)
                 st.success(f'Evaluations Completed')
                 # Gather cost of the lowest cost model
-                # TODO: potential rounding issue here or is the meant to be per 1000?
                 lowest_cost = round(results_df['Total Cost'].min(),2)
                 # Gather name of lowest cost model
                 lowest_cost_models = results_df[results_df['Total Cost'] == lowest_cost]['Model'].tolist()
@@ -108,7 +100,6 @@ with st.container():
                 # if it is not the lowest cost option, it returns itself
                 adjust_highest_cost = lambda x: 0 if x == lowest_cost else x
                 # determines the differences between the lowest cost model and highest cost model
-                # TODO: potential rounding issue here or is the meant to be per 1000?
                 adjusted_highest_cost = round(adjust_highest_cost(highest_cost),2)
                 # Find the model with the lowest latency
                 shortest_time_length = round(results_df['Time Length'].min(),2)
@@ -136,14 +127,11 @@ with st.container():
                 # It returns 0 if the input x is equal to the highest_score, otherwise it returns x
                 adjust_lowest_score = lambda x: 0 if x == highest_score else x
                 # Apply the adjust_highest_time function to the lowest_score and convert the result to an integer
-                # TODO: is this meant to use the adjust_lowest_score function?
                 adjusted_lowest_score_str = int(adjust_lowest_score(lowest_score))
-                
-                
+                # Header for model performance graphs
                 st.subheader("Model Performance")
                 # configure the streamlit front end to have 3 columns
                 col1, col2, col3 = st.columns(3)
-                
                 # Display a metric in column 1 with a label indicating the lowest cost model(s) and their
                 # corresponding cost(s) in ($/1000), Display the current lowest cost value, and the difference
                 # between the adjusted highest cost and the lowest cost
@@ -154,13 +142,9 @@ with st.container():
                 # adjusted highest time and the shortest time length
                 col2.metric(label=f"Fastest (secs)\n: {shortest_time_length_models_str}", value=shortest_time_length,
                             delta=round(adjusted_highest_time - shortest_time_length,2))
-                
                 # Display a metric in column 3 with a label indicating the best result model(s) and their
                 # corresponding score(s) in the range 0-5, Display the current highest score value,
                 # and the difference between the highest score and the adjusted lowest score
-                
-            
-                
                 col3.metric(label=f"Best Results (0-5): \n {highest_score_models_str}", value=highest_score,
                             delta=highest_score - adjusted_lowest_score_str)
                 # display image containing a graph of the model evaluation results
