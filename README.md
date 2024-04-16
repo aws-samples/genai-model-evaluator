@@ -7,7 +7,6 @@ The GenAI Model Evaluator is a tool designed for you to analyze and compare the 
 ## Demo
 ![Alt text](images/demo.gif)
 
-
 ## Features
 
 - **PDF Summarization:** Currently supports evaluating Bedrock Models' ability to summarize text from uploaded PDF documents. Future updates will extend support to other tasks such as classification and text generation/editing.
