@@ -29,7 +29,7 @@ MANIFEST
 *.pdf
 *.csv
 pdfs/*
-reports/*
+#reports/*
 
 
 # PyInstaller
@@ -157,7 +157,6 @@ dmypy.json
 
 # Cython debug symbols
 cython_debug/
-reports/*
 # PyCharm
 #  JetBrains specific template is maintained in a separate JetBrains.gitignore that can
 #  be found at https://github.com/github/gitignore/blob/main/Global/JetBrains.gitignore
