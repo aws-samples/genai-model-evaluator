@@ -91,12 +91,11 @@ pip install -r requirements.txt
 ```
 ## Step 3: Optional
 
-Optionally create a .env file in the root of this repo. Within the .env file you just created you will need to configure the .env to contain:
+Create a .env file in the root of this repo. Within the .env file you just created you will need to configure the .env to contain:
 
 ```
 max_tokens=2048
 region_name=us-east-1
-profile_name=
 profile_name=<AWS_CLI_PROFILE_NAME>
 save_folder=<PATH_TO_ROOT_OF_THIS_REPO>
 

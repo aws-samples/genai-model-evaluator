@@ -25,7 +25,6 @@ save_folder = os.getenv("save_folder")
 profile_name = os.getenv("profile_name")
 region_name = os.getenv("region_name")
 max_tokens = int(os.getenv("max_tokens"))        
-                
 
 # title of the streamlit app
 st.title(f""":rainbow[GenAI Model Evaluator]""")
