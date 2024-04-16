@@ -29,7 +29,7 @@ MANIFEST
 *.pdf
 *.csv
 pdfs/*
-reports/*
+#reports/*
 
 
 # PyInstaller
