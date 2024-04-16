@@ -938,8 +938,6 @@ This is the prompt/instructions that the models will be provided and that you wi
     boto3.setup_default_session(profile_name=os.getenv("profile_name"))
 
     prompt = json.dumps(prompt)
-
-    prompt = json.dumps(prompt)
     # get region name form env (or default to us-east-1 if it cant)
     try:
         region = os.getenv("region_name")

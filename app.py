@@ -62,7 +62,7 @@ with st.container():
         )
     
     
-    
+
     # a button used to trigger the start of a model evaluation job - One button for each job type
     short_form_summary = st.button("Evaluate Models")
 
@@ -77,7 +77,7 @@ with st.container():
         elif len(model_options) < 1:
             # send a warning message to the user that they need to select at least two models to compare
             st.warning("Please select at least two models to compare")
-        elif (len(txt) /2.5 ) > max_tokens:
+        elif (len(txt) / 2.5) > max_tokens:
             st.error("You can't use more than {max_tokens} characters")
         else:
             # determine the path to temporarily save the PDF file that was uploaded
@@ -95,7 +95,7 @@ with st.container():
                 # dataframe, the evaluation results, and the cost evaluation results
                 st.success(f'Running Evaluations for  {len(model_options)} models.')
                 results_df, evaluation_results, costs_eval_results, score_rubric_df = final_evaluator(save_path,
-                                                                                                      model_options,txt)
+                                                                                                      model_options, txt)
                 st.success(f'Evaluations Completed')
                 # Gather cost of the lowest cost model
                 # TODO: potential rounding issue here or is the meant to be per 1000?
