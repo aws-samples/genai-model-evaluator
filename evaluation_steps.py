@@ -15,13 +15,6 @@ load_dotenv()
 # Setting up the default boto3 session with a specified AWS profile name
 boto3.setup_default_session(profile_name=os.getenv("profile_name"))
 
-
-# TODO: Take out:
-# Instantiating the Amazon Bedrock Runtime Client
-# client = boto3.client(
-#     service_name='bedrock-runtime',
-#     region_name=os.getenv("region_name")
-# )
 async def get_bedrock_client():
     """
     Asynchronously creates and returns a client for interacting with the Bedrock Runtime service.
@@ -204,7 +197,6 @@ model's summary to be evaluated:
     return result
 
 
-#TODO: change order of parameters
 async def eval_model_completeness(model, summary, source_text):
     """
     Evaluates the completeness of a model's summary based on a source text.
@@ -854,12 +846,17 @@ The model's output to be evaluated:
 
 def dynamic_grading_criteria(task):
     """
+    Creates an evaluation framework and grading criteria for the task/prompt that the user inputted in the UI in the "Document Summary Task" TextBox
 
-    :param task:
-    :return:
+    This method dynamically generates the grading criteria, system prompt, and user
+    prompt based on the source text, to allow for evaluation of different aspects
+    of a summary beyond just accuracy.
+
+    :param task: The task/prompt that the user inputted in the UI in the "Document Summary Task" TextBox
+    :return: A tuple containing the score and evaluation summary
     """
-
-    system_prompt=f"""
+    # Constructing the system prompt providing the task that was given to the models. Using Few shot of the other task types to dynamically create an evaluation criteria
+    system_prompt = f"""
 Your goal is to evaluate and compare an AI model's outputs/response
 You will be evaluating a model based on how well it adhered to the provided task in the prompt (Task Adherence)
 Only create your evaluation in regards to the tasks explicitly mentioned in the  <provided_prompt>; other criteria (Completeness, Accuracy, Logical Flow, Paragraph and Sentence Structure, Conciseness, Clarity, Tone, and Objectivity) will be evaluated in a different method.
@@ -912,26 +909,26 @@ Return your evaluation criteria for Task Adherence in <evaluation_criteria> xml 
 Return your grading framework for Task Adherence in <evaluation_grading> xml tags. with no other text
 
 """
-
-    user_prompt=f"""
+    # Constructing user prompt which provides the task
+    user_prompt = f"""
 
 This is the prompt/instructions that the models will be provided and that you will grade their adherence to
 <provided_prompt>
 {task}
 </provided_prompt>
 """
-    
-    content=[{
+
+    content = [{
         "type": "text",
         "text": user_prompt
-            }]
-    
+    }]
+
     prompt = {
         "anthropic_version": "bedrock-2023-05-31",
         "max_tokens": 10000,
         "temperature": 0,
         "system": system_prompt,
-        "messages": [    
+        "messages": [
             {
                 "role": "user",
                 "content": content
@@ -942,10 +939,18 @@ This is the prompt/instructions that the models will be provided and that you wi
 
     prompt = json.dumps(prompt)
 
-    # Creating a boto3 client for interacting with the Bedrock Runtime service
-    client = boto3.client('bedrock-runtime', 'us-east-1')
+    prompt = json.dumps(prompt)
+    # get region name form env (or default to us-east-1 if it cant)
+    try:
+        region = os.getenv("region_name")
+    except:
+        region = "us-east-1"
+
+    # create Bedrock client
+    client = boto3.client('bedrock-runtime', region)
     # Invoking the Amazon Bedrock and the Claude 3 Sonnet model with the constructed prompt
-    response = client.invoke_model(body=prompt, modelId="anthropic.claude-3-sonnet-20240229-v1:0", accept="application/json", contentType="application/json")
+    response = client.invoke_model(body=prompt, modelId="anthropic.claude-3-sonnet-20240229-v1:0",
+                                   accept="application/json", contentType="application/json")
     # Extracting and parsing the response from the AI model
     response_body = json.loads(response.get('body').read())
     response = response_body['content'][0]['text']
@@ -953,10 +958,8 @@ This is the prompt/instructions that the models will be provided and that you wi
     eval_criteria = parse_xml(response, "evaluation_criteria").strip()
     eval_grading = parse_xml(response, "evaluation_grading").strip()
 
-
-
+    # return the evaluation_criteria and evaluation_grading strings
     return eval_criteria, eval_grading
-
 
 
 async def evaluate_model_output_orchestrator(source_text_data, model_name, model_summary, task, dynamic_evaluation_criteria, scale):
