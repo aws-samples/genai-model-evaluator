@@ -28,7 +28,7 @@ bedrock_runtime = boto3.client(
 )
 
 
-def final_evaluator(pdf_path, models, task_prompt="Summarize this document in 2 sentences."):
+def final_evaluator(pdf_path, models, task_prompt="Summarize this document in 2 sentences.", max_tokens='4096'):
     """
     Evaluate multiple models for summarization and other evaluation metrics.
 
@@ -65,7 +65,7 @@ def final_evaluator(pdf_path, models, task_prompt="Summarize this document in 2 
             start = timer()
             # Invoke the specific Anthropic model, and get the generated summary, input tokens and output tokens
             summary_invoke_response, input_token_count, output_token_count = invoke_anthropic(model, prompt,
-                                                                                              input_text_data)
+                                                                                              input_text_data, max_tokens)
             # end timer
             end = timer()
             # calculate total time taken
@@ -98,7 +98,7 @@ def final_evaluator(pdf_path, models, task_prompt="Summarize this document in 2 
             start = timer()
             # Invoke the specific Mistral model, and get the generated summary, input tokens and output tokens
             summary_invoke_response, input_token_count, output_token_count = invoke_mistral(model, prompt,
-                                                                                              input_text_data)
+                                                                                              input_text_data, max_tokens)
             # end timer
             end = timer()
             # calculate total time taken
@@ -131,7 +131,7 @@ def final_evaluator(pdf_path, models, task_prompt="Summarize this document in 2 
             start = timer()
             # Invoke the specific Meta model, and get the generated summary, input tokens and output tokens
             summary_invoke_response, input_token_count, output_token_count = invoke_meta(model, prompt,
-                                                                                              input_text_data)
+                                                                                              input_text_data, max_tokens)
             # end timer
             end = timer()
             # calculate total time taken
@@ -164,7 +164,7 @@ def final_evaluator(pdf_path, models, task_prompt="Summarize this document in 2 
             start = timer()
             # Invoke the specific Cohere model, and get the generated summary, input tokens and output tokens
             summary_invoke_response, input_token_count, output_token_count = invoke_cohere(model, prompt,
-                                                                                              input_text_data)
+                                                                                              input_text_data,max_tokens)
             # end timer
             end = timer()
             # calculate total time taken
@@ -197,7 +197,7 @@ def final_evaluator(pdf_path, models, task_prompt="Summarize this document in 2 
             start = timer()
             # Invoke the specific Amazon model, and get the generated summary, input tokens and output tokens
             summary_invoke_response, input_token_count, output_token_count = invoke_amazon(model, prompt,
-                                                                                              input_text_data)
+                                                                                              input_text_data,max_tokens)
             # end timer
             end = timer()
             # calculate total time taken
@@ -230,7 +230,7 @@ def final_evaluator(pdf_path, models, task_prompt="Summarize this document in 2 
             start = timer()
             # Invoke the specific AI21 model, and get the generated summary, input tokens and output tokens
             summary_invoke_response, input_token_count, output_token_count = invoke_AI21(model, prompt,
-                                                                                              input_text_data)
+                                                                                              input_text_data, max_tokens)
             # end timer
             end = timer()
             # calculate total time taken

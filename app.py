@@ -17,7 +17,7 @@ current_profile_name = boto3.DEFAULT_SESSION.profile_name
 
 os.environ.setdefault('save_folder', current_directory)
 os.environ.setdefault('profile_name', current_profile_name)  # Use retrieved or fallback profile name
-os.environ.setdefault('region_name', 'default_region_name')
+os.environ.setdefault('region_name', 'us-east-1')
 os.environ.setdefault('max_tokens', '4096')
 
 # variables will use their respective values only if they weren't already set elsewhere
@@ -95,7 +95,7 @@ with st.container():
                 # dataframe, the evaluation results, and the cost evaluation results
                 st.success(f'Running Evaluations for  {len(model_options)} models.')
                 results_df, evaluation_results, costs_eval_results, score_rubric_df = final_evaluator(save_path,
-                                                                                                      model_options, txt)
+                                                                                                      model_options, txt,max_tokens)
                 st.success(f'Evaluations Completed')
                 # Gather cost of the lowest cost model
                 # TODO: potential rounding issue here or is the meant to be per 1000?

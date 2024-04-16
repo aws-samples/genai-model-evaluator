@@ -25,6 +25,11 @@ async def get_bedrock_client():
     Returns:
         aioboto3.client: A client object for interacting with the Bedrock Runtime service.
     """
+    
+    if os.getenv("profile_name") is None:
+        os.environ["profile_name"] = "default"
+        os.environ["region_name"] = "us-east-1"
+    
     # Create an aioboto3 session using the specified profile name
     session = aioboto3.Session(profile_name=os.getenv("profile_name"))
     # Asynchronously create a client for the Bedrock Runtime service
