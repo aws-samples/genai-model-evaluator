@@ -44,6 +44,8 @@ with st.container():
          'mistral.mistral-large-2402-v1:0',
          'meta.llama2-13b-chat-v1',
          'meta.llama2-70b-chat-v1',
+         'meta.llama3-8b-instruct-v1:0',
+         'meta.llama3-70b-instruct-v1:0',
          'cohere.command-text-v14',
          'cohere.command-light-text-v14',
          'amazon.titan-text-lite-v1',
