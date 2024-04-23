@@ -44,7 +44,7 @@ Configure necessary environment variables (e.g., AWS credentials, database conne
 ## Prerequisites:
 
 1. Amazon Bedrock Access and CLI Credentials.
-2. Ensure Python 3.9 installed on your machine, it is the most stable version of Python for the packages we will be using, it can be downloaded [here](https://www.python.org/downloads/release/python-3911/).
+2. Ensure Python 3.10 installed on your machine, it is the most stable version of Python for the packages we will be using, it can be downloaded [here](https://www.python.org/downloads/release/python-3911/).
 
 ## Step 1:
 
@@ -62,7 +62,7 @@ Set up a python virtual environment in the root directory of the repository and 
 
 ```
 pip install virtualenv
-python3.9 -m venv venv
+python3.10 -m venv venv
 
 ```
 
