@@ -11,6 +11,8 @@ def calculate_input_price(token_number, model_id):
     """
     # Dictionary containing prices per 1000 tokens for different models
     model_input_token_prices = {
+        'amazon.titan-embed-text-v1': 0.0001,
+        'amazon.titan-embed-text-v2:0': 0.00002,
         'amazon.titan-text-lite-v1': 0.0003,
         'amazon.titan-text-express-v1': 0.0075,
         'ai21.j2-mid-v1': 0.0125,
@@ -22,6 +24,8 @@ def calculate_input_price(token_number, model_id):
         'anthropic.claude-3-haiku-20240307-v1:0': 0.0002500,
         'cohere.command-text-v14': 0.0015,
         'cohere.command-light-text-v14': 0.0003,
+        'cohere.embed-english-v3': 0.0001,
+        'cohere.embed-multilingual-v3': 0.0001,
         'meta.llama2-13b-chat-v1': 0.00075,
         'meta.llama2-70b-chat-v1': 0.00195,
         'meta.llama3-8b-instruct-v1:0': 0.0004,
