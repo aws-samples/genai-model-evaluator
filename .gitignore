@@ -26,8 +26,8 @@ share/python-wheels/
 *.egg
 MANIFEST
 *.DS_Store
-*.pdf
-*.csv
+pdf
+csv
 pdfs/*
 reports/*
 
